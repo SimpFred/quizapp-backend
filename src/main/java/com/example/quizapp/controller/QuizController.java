@@ -5,6 +5,7 @@ import com.example.quizapp.model.QuizResult;
 import com.example.quizapp.model.TriviaResponse;
 import com.example.quizapp.repository.QuizResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,12 +20,12 @@ public class QuizController {
     private QuizResultRepository quizResultRepository;
 
     @GetMapping("/questions")
-    public List<Question> getQuizQuestions() {
-        String url = "https://opentdb.com/api.php?amount=10&category=12&difficulty=easy&type=multiple";
+    public ResponseEntity<List<Question>> getQuizQuestions() {
+        String url = "https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple";
         RestTemplate restTemplate = new RestTemplate();
         TriviaResponse response = restTemplate.getForObject(url, TriviaResponse.class);
         assert response != null;
-        return response.getResults();
+        return ResponseEntity.ok(response.getResults());
     }
 
     @PostMapping("/results")
