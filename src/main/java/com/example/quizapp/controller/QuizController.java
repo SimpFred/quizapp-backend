@@ -20,14 +20,19 @@ public class QuizController {
     private QuizResultRepository quizResultRepository;
 
     @GetMapping("/questions")
-    public ResponseEntity<List<Question>> getQuizQuestions() {
-        String url = "https://opentdb.com/api.php?amount=10&category=11&difficulty=easy&type=multiple";
+    public ResponseEntity<List<Question>> getQuizQuestions(
+            @RequestParam int amount,
+            @RequestParam int category,
+            @RequestParam String difficulty) {
+
+        String url = String.format("https://opentdb.com/api.php?amount=%d&category=%d&difficulty=%s&type=multiple",
+                amount, category, difficulty);
+        System.out.println(url + ": URL");
         RestTemplate restTemplate = new RestTemplate();
         TriviaResponse response = restTemplate.getForObject(url, TriviaResponse.class);
         assert response != null;
         return ResponseEntity.ok(response.getResults());
     }
-
     @PostMapping("/results")
     public QuizResult saveResult(@RequestBody QuizResult result) {
         return quizResultRepository.save(result);
