@@ -1,9 +1,12 @@
 package com.example.quizapp.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class QuizResult {
+    // Getters och Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -11,25 +14,12 @@ public class QuizResult {
     private String username;
     private int score;
 
-    // Getters och Setters
-    public Long getId() {
-        return id;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public int getScore() {
-        return score;
     }
 
     public void setScore(int score) {
