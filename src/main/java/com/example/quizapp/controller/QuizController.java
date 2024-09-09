@@ -33,13 +33,14 @@ public class QuizController {
         assert response != null;
         return ResponseEntity.ok(response.getResults());
     }
+
     @PostMapping("/results")
     public QuizResult saveResult(@RequestBody QuizResult result) {
         return quizResultRepository.save(result);
     }
 
-    @GetMapping("/results/top10")
-    public List<QuizResult> getTop10Results() {
-        return quizResultRepository.findTop10ByOrderByScoreDesc();
+    @GetMapping("top10")
+    public ResponseEntity<List<QuizResult>> getTop10Results() {
+        return ResponseEntity.ok(quizResultRepository.findTop10ByOrderByScoreDesc());
     }
 }
