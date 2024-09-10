@@ -2,7 +2,9 @@ package com.example.quizapp.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
+@Setter
 @Getter
 @Entity
 public class QuizResult {
@@ -13,15 +15,4 @@ public class QuizResult {
     private String username;
     private int score;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
 }
