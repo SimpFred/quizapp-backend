@@ -39,8 +39,10 @@ public class QuizController {
         return quizResultRepository.save(result);
     }
 
-    @GetMapping("top10")
-    public ResponseEntity<List<QuizResult>> getTop10Results() {
-        return ResponseEntity.ok(quizResultRepository.findTop10ByOrderByScoreDesc());
+    @GetMapping("/top10")
+    public ResponseEntity<List<QuizResult>> getTop10Results(
+            @RequestParam int category,
+            @RequestParam int numberOfQuestions) {
+        return ResponseEntity.ok(quizResultRepository.findTop10ByCategoryAndNumberOfQuestionsOrderByScoreDesc(category, numberOfQuestions));
     }
 }

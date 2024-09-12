@@ -14,5 +14,7 @@ public class QuizResult {
     private Long id;
     private String username;
     private int score;
+    private int category;
+    private int numberOfQuestions;
 
 }

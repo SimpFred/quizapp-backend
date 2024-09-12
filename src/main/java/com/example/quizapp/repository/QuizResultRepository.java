@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface QuizResultRepository extends JpaRepository<QuizResult, Long> {
     List<QuizResult> findTop10ByOrderByScoreDesc();
+    List<QuizResult> findTop10ByCategoryAndNumberOfQuestionsOrderByScoreDesc(int category, int numberOfQuestions);
 }
