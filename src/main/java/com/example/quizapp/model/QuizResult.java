@@ -16,5 +16,5 @@ public class QuizResult {
     private int score;
     private int category;
     private int numberOfQuestions;
-
+    private String difficulty;
 }
